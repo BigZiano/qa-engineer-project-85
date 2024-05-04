@@ -4,7 +4,7 @@
   requirement: |
     Пользователь должен иметь возможность зарегистрироваться
   prerequisites: |
-    Открыта страница регистрации
+    Открыта страница регистрации. https://codebattle.hexlet.io/?_gl=1*rur172*_ga*MTY4Nzk1MjUwLjE3MTQwMjYwMDk.*_ga_PM3R85EKHN*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.*_ga_WWGZ6EVHEY*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.
   test-data: |
     no data
   steps:
@@ -17,28 +17,62 @@
     Пользователь успешно зарегистрирован. открывается лобби, в правом верхнем углу указан ник пользователя.
 
 - summary: |
-    Проверка невозможности регистрации пользователя с невалидными данными
+    Проверка невозможности регистрации пользователя с невалидными данными "Nickname" 
   requirement: |
     При вводе невалидных данных в форму регистрации, система должна выдать ошибку и подсказу для пользователя
   prerequisites:
-    Открыта страница регистарции
+    Открыта страница регистарции. https://codebattle.hexlet.io/?_gl=1*rur172*_ga*MTY4Nzk1MjUwLjE3MTQwMjYwMDk.*_ga_PM3R85EKHN*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.*_ga_WWGZ6EVHEY*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.
   test-data: |
     no data
   steps:
     - В поле  Nickname вводим "QA"
+    - В поле Email вводим "sam@mail.ru"
+    - В поле Password вводим "123456"
+    - В поле Password Confirmation вводим "123456"
+    - Нажимаем кнопку «Submit»
+  expected-result: |
+    Пользователь не зарегистрирован поле Nickname виделяется красным 
+
+- summary: |
+    Проверка невозможности регистрации пользователя с невалидными данными "Email" 
+  requirement: |
+    При вводе невалидных данных в форму регистрации, система должна выдать ошибку и подсказу для пользователя
+  prerequisites:
+    Открыта страница регистарции. https://codebattle.hexlet.io/?_gl=1*rur172*_ga*MTY4Nzk1MjUwLjE3MTQwMjYwMDk.*_ga_PM3R85EKHN*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.*_ga_WWGZ6EVHEY*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.
+  test-data: |
+    no data
+  steps:
+    - В поле  Nickname вводим "QAS"
     - В поле Email вводим "mail."
+    - В поле Password вводим "123456"
+    - В поле Password Confirmation вводим "123456"
+    - Нажимаем кнопку «Submit»
+  expected-result: |
+    Пользователь не зарегистрирован поле Email виделяется красным 
+
+    - summary: |
+    Проверка невозможности регистрации пользователя с невалидными данными "Password" 
+  requirement: |
+    При вводе невалидных данных в форму регистрации, система должна выдать ошибку и подсказу для пользователя
+  prerequisites:
+    Открыта страница регистарции. https://codebattle.hexlet.io/?_gl=1*rur172*_ga*MTY4Nzk1MjUwLjE3MTQwMjYwMDk.*_ga_PM3R85EKHN*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.*_ga_WWGZ6EVHEY*MTcxNDgwMjYxMy43LjEuMTcxNDgwMjYzMy40MC4wLjA.
+  test-data: |
+    no data
+  steps:
+    - В поле  Nickname вводим "QAS"
+    - В поле Email вводим "sam@mail.ru"
     - В поле Password вводим "123"
     - В поле Password Confirmation вводим "321"
     - Нажимаем кнопку «Submit»
   expected-result: |
-    Пользователь не зарегистрирован
+    Пользователь не зарегистрирован поле Password виделяется красным 
 
 - summary: |
     Проверка успешной авторизации
   requirement: |
     Пользователь должен иметь возможность авторизоваться
   prerequisites: |
-    Открыта страница авторизации
+    Открыта страница авторизации. https://codebattle.hexlet.io/session/new?locale=en&next=%2F
   test-data: |
     Почта qwerty@mail.com
     Пароль qwerty
@@ -50,19 +84,35 @@
     Пользователь успешно авторизован
 
 - summary: |
-    Проверка авторизации незарегистрированного пользователя
+    Проверка авторизации незарегистрированного пользователя путём ввода несуществующей почты
   requirement: |
     При вводе невалидных данных в форму авторизации, система должна выдать ошибку и подсказу для пользователя
   prerequisites: |
-    Открыта страница авторизации
+    Открыта страница авторизации. https://codebattle.hexlet.io/session/new?locale=en&next=%2F
   test-data: |
     no data
   steps:
     - Ввести несуществующую почту
+    - Ввести акутальный пароль
+    - Нажимаем кнопку «Submit»
+  expected-result: |
+    Пользователь не авторизован. Поле "Email" выделяется красным
+
+- summary: |
+    Проверка авторизации незарегистрированного пользователя несуществуюшего пароля
+  requirement: |
+    При вводе невалидных данных в форму авторизации, система должна выдать ошибку и подсказу для пользователя
+  prerequisites: |
+    Открыта страница авторизации. https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+  test-data: |
+    no data
+  steps:
+    - Ввести существующую почту
     - Ввести неакутальный пароль
     - Нажимаем кнопку «Submit»
   expected-result: |
-    Пользователь не авторизован
+    Пользователь не авторизован Поле "Password" выделяется красным
+
 
 - summary: |
     Проверка авторизации пользователя с помощью Github
@@ -143,7 +193,7 @@
     - Нажимаем на "Начало"
     - Подтверждаем, что хотим начать турнир
   expected-result: |
-    Турнир успешно создан, к нему можно присоедтниться и ожидать соперников
+    Турнир успешно создан.
 
 - summary: |
     Проверка создания игры с любым пользователем
@@ -210,7 +260,7 @@
   steps:
     - Пользователь 2 на главной странице, в разделе "Лобби" Нажимает "Show" на ранее созданной Пользователем 1
   expected-result: |
-    Игра без регистрации успешно создана
+    Открывается страница сражения двух пользователей.
 
 - summary: |
     Проверка возможности просмотреть в записи завершенную игру
@@ -231,7 +281,7 @@
   requirement: |
     Пользователи должны иметь возможность получать очки по итогам игры, на основе которых строиться рейтинг за неделю, месяц и за все время
   prerequisites: |
-    Пользователи авторизованы на сайте, Пользователь 1 на главной странице создает игру с другим пользователем (параметры игры любые)
+    Пользователи авторизованы на сайте, Пользователь 1 на главной странице создает игру с другим пользователем (параметры игры любые) надо записать (запомнить) кол-во очков у игрока до начисления
   test-data: |
     no data
   steps:
